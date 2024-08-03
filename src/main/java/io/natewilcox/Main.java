@@ -12,24 +12,18 @@ public class Main {
         BookStore store = new BookStore(createBooks());
         store.getShipment(createMagazines());
 
-        store.BanBooksThat((pub) -> pub.getTitle().equals("1984"));
+        //store.BanBooksThat((pub) -> pub.getTitle().equals("1984"));
+        //store.applyDiscount(new PercentageDiscount(0.5, (pub) -> pub.getPrice() > 10.0));
 
-        store.applyDiscount((book) -> {
+        String bookNameString = "1984";
+        System.out.println("Looking for book: " + bookNameString);
+        Publication book = store.findBookByTitle(bookNameString);
 
-
-            if(book.getPrice() > 15.0) {
-                book.setPrice(9.99);
-            }
-
-            if(book instanceof Magazine) {
-                book.setPrice(0.99);
-            }
-        });
-
-        store.printBooks();
-
-        //Publication book = store.findBookByTitle("1984");
-        //System.out.println(book);
+        if (book != null) {
+            System.out.println("Found book: " + book);
+        } else {
+            System.out.println("Book not found");
+        }
     }
 
     public static List<Publication> createMagazines() {

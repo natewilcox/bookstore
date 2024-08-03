@@ -1,5 +1,6 @@
 package io.natewilcox;
 
+import java.text.NumberFormat;
 import java.util.Date;
 
 public class Magazine extends Publication {
@@ -17,6 +18,9 @@ public class Magazine extends Publication {
 
     @Override
     public String toString() {
-        return this.getTitle() + ", published on " + this.getPublicationDate() + ", costs " + this.getPrice();
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
+        String price = this.getPrice() != null ? currencyFormatter.format(this.getPrice()) : "Price not set";
+
+        return this.getTitle() + ", published on " + this.getPublicationDate() + ", costs " + price;
     }
 }

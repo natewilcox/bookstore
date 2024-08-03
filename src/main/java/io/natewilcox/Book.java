@@ -1,5 +1,7 @@
 package io.natewilcox;
 
+import java.text.NumberFormat;
+
 public class Book extends Publication {
     
     private String author;
@@ -15,6 +17,9 @@ public class Book extends Publication {
 
     @Override
     public String toString() {
-        return this.getTitle() + ", written by " + this.getAuthor() + ", costs " + this.getPrice();
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
+        String price = this.getPrice() != null ? currencyFormatter.format(this.getPrice()) : "Price not set";
+
+        return this.getTitle() + ", written by " + this.getAuthor() + ", costs " + price;
     }
 }

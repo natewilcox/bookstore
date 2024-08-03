@@ -3,7 +3,6 @@ package io.natewilcox;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class BookStore {
@@ -78,14 +77,14 @@ public class BookStore {
             .orElse(null);
     }
 
-    public void applyDiscount(Consumer<Publication> discount) {
+    public void applyDiscount(Discount discount) {
 
         if(discount == null) {
             return;
         }
 
         for (Publication book : this.books) {
-            discount.accept(book);
+            discount.applyDiscount(book);
         }
     }
 
