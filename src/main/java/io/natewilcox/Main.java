@@ -12,10 +12,10 @@ public class Main {
         BookStore store = new BookStore(createBooks());
         store.getShipment(createMagazines());
 
-        //store.BanBooksThat((pub) -> pub.getTitle().equals("1984"));
         //store.applyDiscount(new PercentageDiscount(0.5, (pub) -> pub.getPrice() > 10.0));
 
         String bookNameString = "1984";
+        store.BanBooksThat((pub) -> pub.getTitle().equals(bookNameString));
         System.out.println("Looking for book: " + bookNameString);
         Publication book = store.findBookByTitle(bookNameString);
 
