@@ -34,6 +34,9 @@ public class Main {
         Author author = new Author("George Orwell");
         //System.out.println(author.name());
 
+        var nathansBooks = BookFactory.createBookWithPrice("Nathan", 9.99);
+        store.addBook(nathansBooks.apply("Im Awesome"));
+
         store.printBooks(new PrintVisitor());
     }
 
