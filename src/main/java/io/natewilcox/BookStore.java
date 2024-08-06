@@ -97,10 +97,7 @@ public class BookStore {
         this.books.removeIf(condition);
     }
 
-    public void printBooks() {
-
-        for (Publication book : this.getBooks()) {
-            System.out.println(book);
-        }
+    public void printBooks(Visitor printVisitor) {
+        this.books.forEach(book -> ((Element)book).accept(printVisitor));
     }
 }

@@ -12,7 +12,13 @@ public class Main {
         BookStore store = new BookStore(createBooks());
         store.getShipment(createMagazines());
 
-        //store.applyDiscount(new PercentageDiscount(0.5, (pub) -> pub.getPrice() > 10.0));
+        double[] a = {10.0};
+        Book testBook = new Book("Test Book", "Test Author", 10.0);
+        store.applyDiscount(new PercentageDiscount(0.5, (pub) -> {
+            a[0] = 15.0;
+            testBook.setPrice(0.0);
+            return pub.getPrice() > 10.0;
+        }));
 
         String bookNameString = "1984";
         store.BanBooksThat((pub) -> pub.getTitle().equals(bookNameString));
@@ -24,10 +30,15 @@ public class Main {
         } else {
             System.out.println("Book not found");
         }
+
+        Author author = new Author("George Orwell");
+        //System.out.println(author.name());
+
+        store.printBooks(new PrintVisitor());
     }
 
     public static List<Publication> createMagazines() {
-        List<Publication> magazines = new ArrayList<>();
+        var magazines = new ArrayList<Publication>();
         magazines.add(MagazineFactory.createMagazine("Time", new Date(), 5.99));
         magazines.add(MagazineFactory.createMagazine("National Geographic", new Date(), 6.99));
         magazines.add(MagazineFactory.createMagazine("The Economist", new Date(), 7.99));

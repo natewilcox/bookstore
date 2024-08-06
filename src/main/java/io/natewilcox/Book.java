@@ -2,7 +2,7 @@ package io.natewilcox;
 
 import java.text.NumberFormat;
 
-public class Book extends Publication {
+public class Book extends Publication implements Element {
     
     private String author;
 
@@ -13,6 +13,11 @@ public class Book extends Publication {
 
     public String getAuthor() {
         return this.author;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitBooks(this);
     }
 
     @Override

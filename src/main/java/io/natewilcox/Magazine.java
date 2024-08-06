@@ -3,7 +3,7 @@ package io.natewilcox;
 import java.text.NumberFormat;
 import java.util.Date;
 
-public class Magazine extends Publication {
+public class Magazine extends Publication implements Element {
     
     private Date publicationDate;
 
@@ -14,6 +14,11 @@ public class Magazine extends Publication {
 
     public Date getPublicationDate() {
         return this.publicationDate;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitMagazines(this);
     }
 
     @Override
